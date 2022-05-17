@@ -1,5 +1,5 @@
 #include "main.h"
-/**
+/*
  * _setenv - sets an env variable
  * @name: new var name
  * @value: value of name
