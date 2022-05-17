@@ -1,6 +1,6 @@
 #include "main.h"
 
-/**
+/*
  * _puts- does put chars
  * @str: is arg
  */
