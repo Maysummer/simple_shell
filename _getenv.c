@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * _get_env - mimics stdlib getenv
+ * _getenv - mimics stdlib getenv
  * @s: name of var to get value
  * Return: pointer to variable
  */
