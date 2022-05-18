@@ -1,8 +1,11 @@
 #include "main.h"
 void sigH(__attribute__((unused))int n)
 {
-	_puts("");
-	exit(EXIT_SUCCESS);
+	if (n == SIGINT)
+	{
+		_puts_no_newline("\n#cisfun$ ");
+	}
+	/*exit(EXIT_SUCCESS);*/
 }
 /**
  * main - simple shell
