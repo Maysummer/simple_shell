@@ -12,6 +12,9 @@ typedef struct PATH_list
 	struct PATH_list *next;
 } path_l;
 
+
+extern char **environ;
+
 #include <stdio.h>
 #include <stdlib.h>
 /*#include <string.h>*/
