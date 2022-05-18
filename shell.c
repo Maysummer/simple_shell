@@ -1,4 +1,9 @@
 #include "main.h"
+
+/**
+ * sigH - put no newline
+ * @n: number
+ */
 void sigH(__attribute__((unused))int n)
 {
 	if (n == SIGINT)
@@ -34,7 +39,7 @@ int main(__attribute__((unused))int ac, char **av)
 		{
 			if (lineptr)
 				free(lineptr);
-			if(isatty(0))
+			if (isatty(0))
 				_puts("");
 			break;
 		}
@@ -49,7 +54,7 @@ int main(__attribute__((unused))int ac, char **av)
 
 		if (!_strcmp(program, "/usr/bin/env"))
 		{
-			for(i = 0; environ[i]; i++)
+			for (i = 0; environ[i]; i++)
 				_puts(environ[i]);
 			k = 2;
 		}
