@@ -6,6 +6,7 @@
  */
 char *_getenv(char *s)
 {
+	extern char **environ;
 	int i = 0, j = 0, k = 0;
 	/*size_t k = 0;*/
 

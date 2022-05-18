@@ -18,7 +18,7 @@ int main(__attribute__((unused))int ac, char **av)
 	while (1)
 	{
 		/*if (_getenv("_"))*/
-		_puts_no_newline("#cisfun$ ");
+		_puts_no_newline("($) ");
 		j = _getline(&lineptr, &n, stdin);
 		if (j == EOF)
 		{
