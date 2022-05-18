@@ -19,7 +19,7 @@ int main(__attribute__((unused))int ac, char **av)
 	{
 		/*if (_getenv("_"))*/
 		_puts_no_newline("($) ");
-		j = _getline(&lineptr, &n, stdin);
+		j = getline(&lineptr, &n, stdin);
 		if (j == EOF)
 		{
 			_puts("");
