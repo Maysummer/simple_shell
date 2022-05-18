@@ -1,4 +1,8 @@
 #include "main.h"
+
+/**
+ * sigH - put no newline
+ */
 void sigH(__attribute__((unused))int n)
 {
 	if (n == SIGINT)
