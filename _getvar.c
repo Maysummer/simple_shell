@@ -6,11 +6,11 @@
  *
  * Return: 0;
  */
-int getvar(char *s, char* save)
+int getvar(char *s, char *save)
 {
 	int i = 0;
 
-	while(save[i])
+	while (save[i])
 	{
 		save[i] = 0;
 		i++;
