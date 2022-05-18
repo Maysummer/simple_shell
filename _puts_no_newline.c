@@ -1,6 +1,6 @@
 #include "main.h"
 
-/*
+/**
  * _puts_no_newline- does put chars
  * @str: is arg
  */
