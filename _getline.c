@@ -37,6 +37,7 @@ size_t _getline(char **lineptr, size_t *n, FILE *stream)
 
 			if ((*lineptr)[j] == '\n')
 			{
+				free(buff);
 				return (j + 1);
 			}
 			j++;
@@ -46,7 +47,10 @@ size_t _getline(char **lineptr, size_t *n, FILE *stream)
 			buff = realloc(buff, *n + 120);
 			*lineptr = realloc(buff, *n + 120);
 			if (!buff || !*lineptr)
+			{
+				free(buff);
 				return (-3);
+			}
 			*n = *n + 120;
 		}
 		if (feof(stream))

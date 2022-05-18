@@ -1,12 +1,12 @@
 #include "main.h"
 /**
- * which - checks if a file exist in the PATH
+ * get_path_program - checks if a file exist in the PATH
  * @short_prog: program passed to terminal
  * @full_prog: full path to program
  * @en: environment variables string
  * Return: -1 or 0;
  */
-int get_program(char *short_prog, char *full_prog, char **en)
+int get_path_program(char *short_prog, char *full_prog, char **en)
 {
 	int i = 0, j = 0, k = 0, l;
 	char *path;
@@ -55,20 +55,22 @@ int get_program(char *short_prog, char *full_prog, char **en)
 					if ((st.st_mode & S_IFMT) != S_IFDIR)
 						return (1);
 					else
-					{
-						full_prog[0] = 0;
 						return 0;
-					}
 				}
 			}
 			else
 			{
 				if(*short_prog == '/' || *short_prog == '.')
 				{
-					free(path);
 					for (j = 0; short_prog[j]; j++)
 						full_prog[j] = short_prog[j];
 					full_prog[j] = 0;
+					free(path);
+					if (stat(full_prog, &st) == 0)
+					{
+						if ((st.st_mode & S_IFMT) != S_IFDIR)
+							return (1);
+					}
 					return (0);	
 				}	
 			}
@@ -85,9 +87,11 @@ int get_program(char *short_prog, char *full_prog, char **en)
 		}
 		if (stat(full_prog, &st) == 0)
 		{
-			free(path);
 			if ((st.st_mode & S_IFMT) != S_IFDIR)
+			{
+				free(path);
 				return (1);
+			}
 			break;
 		}
 		i++;
@@ -96,5 +100,10 @@ int get_program(char *short_prog, char *full_prog, char **en)
 	for (j = 0; short_prog[j]; j++)
 		full_prog[j] = short_prog[j];
 	full_prog[j] = 0;
+	if (stat(full_prog, &st) == 0)
+	{
+		if ((st.st_mode & S_IFMT) != S_IFDIR)
+			return (1);
+	}
 	return (0);
 }
