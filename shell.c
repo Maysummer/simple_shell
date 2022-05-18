@@ -2,6 +2,7 @@
 
 /**
  * sigH - put no newline
+ * @n: number
  */
 void sigH(__attribute__((unused))int n)
 {
