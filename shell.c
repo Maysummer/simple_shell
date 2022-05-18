@@ -46,9 +46,11 @@ int main(__attribute__((unused))int ac, char **av)
 		remove_new_line(lineptr);
 		make_tok_array(lineptr, dl, p_argv);
 		k = get_path_program(p_argv[0], program, environ);
-		free(lineptr);
 		if (!_strcmp(program, "exit"))
+		{
+			free(lineptr);
 			exit(EXIT_SUCCESS);
+		}
 
 		if (!_strcmp(program, "/usr/bin/env"))
 		{
@@ -63,6 +65,7 @@ int main(__attribute__((unused))int ac, char **av)
 
 		if (cpid == -1)
 		{
+			free(lineptr);
 			perror("Error");
 			exit(EXIT_FAILURE);
 		}
@@ -70,6 +73,7 @@ int main(__attribute__((unused))int ac, char **av)
 		if (cpid == 0)
 		{
 			execve(program, p_argv, NULL);
+			free(lineptr);
 			perror(av[0]);
 			exit(EXIT_FAILURE);
 		}
@@ -79,6 +83,7 @@ int main(__attribute__((unused))int ac, char **av)
 			{
 				perror(av[0]);
 			}
+			free(lineptr);
 			wait(&status);
 		}
 		i++;
