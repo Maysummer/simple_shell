@@ -19,6 +19,7 @@ typedef struct PATH_list
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
+ssize_t _prompt(size_t *n, char **lineptr);
 int _strcmp(char *s1, char *s2);
 int _putchar(char c);
 void _puts(char *str);
