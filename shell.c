@@ -37,7 +37,13 @@ int main(__attribute__((unused))int ac, char **av)
 		if (!_strcmp(program, "exit"))
 		{
 			if (p_argv[1])
-				exit(atoi(p_argv[1]));
+			{
+				if (atoi(p_argv[1]))
+					exit(atoi(p_argv[1]));
+				else
+					dprintf(2, "%s: 1: %s: illegal number: %s\n",
+							av[0], program, p_argv[1]);
+			}
 			exit(EXIT_SUCCESS);
 		}
 
@@ -63,14 +69,16 @@ int main(__attribute__((unused))int ac, char **av)
 		{
 			execve(program, p_argv, NULL);
 			/*free(lineptr);*/
-			perror(av[0]);
+			/*perror(av[0]);*/
+			dprintf(2, "%s: 1: %s: not found\n", av[0], program);
 			exit(EXIT_FAILURE);
 		}
 		else
 		{
 			if (!k)
 			{
-				perror(av[0]);
+				dprintf(2, "%s: 1: %s: not found\n", av[0], program);
+				/*perror(av[0]);*/
 			}
 			/*free(lineptr);*/
 			wait(&status);
