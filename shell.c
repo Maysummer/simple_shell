@@ -36,7 +36,8 @@ int main(__attribute__((unused))int ac, char **av)
 		k = get_path_program(p_argv[0], program, environ);
 		if (!_strcmp(program, "exit"))
 		{
-			/*free(lineptr);*/
+			if (p_argv[1])
+				exit(atoi(p_argv[1]));
 			exit(EXIT_SUCCESS);
 		}
 
