@@ -1,12 +1,4 @@
 #include "main.h"
-void sigH(__attribute__((unused))int n)
-{
-	if (n == SIGINT)
-	{
-		_puts_no_newline("\n#cisfun$ ");
-	}
-	/*exit(EXIT_SUCCESS);*/
-}
 /**
  * main - simple shell
  * @ac: arg count
@@ -30,7 +22,6 @@ int main(__attribute__((unused))int ac, char **av)
 		if (isatty(0))
 			_puts_no_newline("#cisfun$ ");
 
-		signal(SIGINT, sigH);
 		j = _getline(lineptr, &n, stdin);
 		if (j == EOF)
 		{
