@@ -18,7 +18,7 @@ int _setenv(const char *name, const char *value, int overwrite)
 	if (!new_var)
 		return (-1);
 
-	for(i = 0; name[i]; i++)
+	for (i = 0; name[i]; i++)
 		new_var[i] = name[i];
 
 	new_var[i++] = '=';
@@ -29,7 +29,7 @@ int _setenv(const char *name, const char *value, int overwrite)
 	if (!check)
 	{
 		i = 0;
-		while(environ[i])
+		while (environ[i])
 			i++;
 		environ[i] = new_var;
 		environ[i + 1] = NULL;
@@ -41,7 +41,7 @@ int _setenv(const char *name, const char *value, int overwrite)
 		else
 		{
 			i = 0;
-			while(environ[i])
+			while (environ[i])
 			{
 				getvar(environ[i], save_var_env);
 				if (!_strcmp(save_var_env, (char *)name))

@@ -13,7 +13,7 @@ int get_path_program(char *short_prog, char *full_prog, char **en)
 	struct stat st;
 
 	full_prog[0] = 0;
-	while(en[i])
+	while (en[i])
 	{
 		if (en[i][j] == 'P' && en[i][j + 1] == 'A'
 		   && en[i][j + 2] == 'T' && en[i][j + 3] == 'H')
@@ -46,21 +46,21 @@ int get_path_program(char *short_prog, char *full_prog, char **en)
 			{
 				if (stat(short_prog, &st) == 0)
 				{
-					for(j = 0; full_prog[j]; j++)
+					for (j = 0; full_prog[j]; j++)
 						full_prog[j] = 0;
-					for(k = 0; short_prog[k]; k++)
+					for (k = 0; short_prog[k]; k++)
 						full_prog[k] = short_prog[k];
 					full_prog[k] = 0;
 					free(path);
 					if ((st.st_mode & S_IFMT) != S_IFDIR)
 						return (1);
 					else
-						return 0;
+						return (0);
 				}
 			}
 			else
 			{
-				if(*short_prog == '/' || *short_prog == '.')
+				if (*short_prog == '/' || *short_prog == '.')
 				{
 					for (j = 0; short_prog[j]; j++)
 						full_prog[j] = short_prog[j];
@@ -71,8 +71,8 @@ int get_path_program(char *short_prog, char *full_prog, char **en)
 						if ((st.st_mode & S_IFMT) != S_IFDIR)
 							return (1);
 					}
-					return (0);	
-				}	
+					return (0);
+				}
 			}
 			k = 0;
 			full_prog[j] = '/';

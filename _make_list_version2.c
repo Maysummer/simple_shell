@@ -22,7 +22,7 @@ int make_list_version2(path_l **head, char *p_dir[])
 		(*head)->next = NULL;
 	}
 
-	while(p_dir[i])
+	while (p_dir[i])
 	{
 		new = malloc(sizeof(path_l));
 		if (!new)
