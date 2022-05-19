@@ -10,7 +10,7 @@ int main(__attribute__((unused))int ac, char **av)
 {
 	pid_t cpid;
 	char *p_argv[20], lineptr[1024] = {0}, program[256];
-	const char *dl = "	 ";
+	const char *dl = "	 \n";
 	int status, i = 0, j = 0, k = 0;
 	size_t n = 10;
 	extern char **environ;
@@ -41,8 +41,11 @@ int main(__attribute__((unused))int ac, char **av)
 				if (atoi(p_argv[1]))
 					exit(atoi(p_argv[1]));
 				else
+				{
 					dprintf(2, "%s: 1: %s: illegal number: %s\n",
 							av[0], program, p_argv[1]);
+					exit(4);
+				}
 			}
 			exit(EXIT_SUCCESS);
 		}
@@ -71,7 +74,7 @@ int main(__attribute__((unused))int ac, char **av)
 			/*free(lineptr);*/
 			/*perror(av[0]);*/
 			dprintf(2, "%s: 1: %s: not found\n", av[0], program);
-			exit(EXIT_FAILURE);
+			exit(127);
 		}
 		else
 		{
