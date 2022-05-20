@@ -68,8 +68,6 @@ int main(__attribute__((unused))int ac, char **av)
 		if (cpid == 0)
 		{
 			execve(program, p_argv, NULL);
-			/*free(lineptr);*/
-			/*perror(av[0]);*/
 			dprintf(2, "%s: 1: %s: not found\n", av[0], program);
 			exit(127);
 		}
