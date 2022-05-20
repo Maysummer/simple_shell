@@ -78,7 +78,6 @@ int main(__attribute__((unused))int ac, char **av)
 				dprintf(2, "%s: 1: %s: not found\n", av[0], program);
 				/*perror(av[0]);*/
 			}
-			/*free(lineptr);*/
 			wait(&status);
 		}
 		i++;
