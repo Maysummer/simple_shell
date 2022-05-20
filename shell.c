@@ -75,7 +75,8 @@ int main(__attribute__((unused))int ac, char **av)
 		{
 			if (!k)
 			{
-				dprintf(2, "%s: 1: %s: not found\n", av[0], program);
+				if (*program)
+					dprintf(2, "%s: 1: %s: not found\n", av[0], program);
 			}
 			wait(&status);
 		}
