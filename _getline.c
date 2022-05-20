@@ -6,12 +6,12 @@
  * @stream: file to read from
  * Return: number of bytes read'
  */
-size_t _getline(char **lineptr, size_t *n, FILE *stream)
+size_t _getline(char *lineptr, size_t *n, FILE *stream)
 {
 	size_t rd = 1, i = 0, j = 0, k = 0;
-	char *buff;
+	char buff[1024];
 
-	if (*n != 0)
+	/*if (*n != 0)
 	{
 		buff = malloc(*n);
 		*lineptr = malloc(*n);
@@ -24,8 +24,8 @@ size_t _getline(char **lineptr, size_t *n, FILE *stream)
 	}
 
 	if (!*lineptr || !buff)
-		return (-2);
-
+		return (-2);*/
+	*n = 0;
 	while (1)
 	{
 		rd = fread(buff + i, 1, 1, stream);
@@ -33,16 +33,16 @@ size_t _getline(char **lineptr, size_t *n, FILE *stream)
 		k += rd;
 		while (j < k)
 		{
-			(*lineptr)[j] = buff[j];
+			lineptr[j] = buff[j];
 
-			if ((*lineptr)[j] == '\n')
+			if (lineptr[j] == '\n')
 			{
-				free(buff);
+				/*free(buff);*/
 				return (j + 1);
 			}
 			j++;
 		}
-		if (k == *n)
+		/*if (k == *n)
 		{
 			buff = realloc(buff, *n + 120);
 			*lineptr = realloc(buff, *n + 120);
@@ -52,10 +52,10 @@ size_t _getline(char **lineptr, size_t *n, FILE *stream)
 				return (-3);
 			}
 			*n = *n + 120;
-		}
+		}*/
 		if (feof(stream))
 			break;
 	}
-	free(buff);
+	/*free(buff);*/
 	return (-1);
 }

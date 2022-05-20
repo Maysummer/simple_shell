@@ -29,7 +29,7 @@ int _strlen(char *s);
 char *_strdup(char *str);
 int make_list_version2(path_l **head, char *p_dir[]);
 int make_list(path_l **head, char *p_dir);
-size_t _getline(char **lineptr, size_t *n, FILE *stream);
+size_t _getline(char *lineptr, size_t *n, FILE *stream);
 int make_tok_array(char *s, const char *dl, char *arr[]);
 char *_strtok(char *s, const char *dl);
 void remove_new_line(char *s);

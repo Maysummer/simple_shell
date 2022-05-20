@@ -1,17 +1,4 @@
 #include "main.h"
-
-/**
- * sigH - put no newline
- * @n: number
- */
-void sigH(__attribute__((unused))int n)
-{
-	if (n == SIGINT)
-	{
-		_puts_no_newline("\n#cisfun$ ");
-	}
-	/*exit(EXIT_SUCCESS);*/
-}
 /**
  * main - simple shell
  * @ac: arg count
@@ -22,24 +9,25 @@ void sigH(__attribute__((unused))int n)
 int main(__attribute__((unused))int ac, char **av)
 {
 	pid_t cpid;
-	char *p_argv[20], *lineptr = NULL, program[256];
-	const char *dl = "	 ";
-	int status, i = 0, j, k;
+	char *p_argv[20], lineptr[1024] = {0}, program[256];
+	const char *dl = "	 \n";
+	int status, i = 0, j = 0, k = 0;
 	size_t n = 10;
 	extern char **environ;
 
 	while (1)
 	{
+		for (i = 0; i < 120; i++)
+			lineptr[i] = 0;
 		if (isatty(0))
 			_puts_no_newline("#cisfun$ ");
 
-		signal(SIGINT, sigH);
-		j = _getline(&lineptr, &n, stdin);
+		j = _getline(lineptr, &n, stdin);
 		if (j == EOF)
 		{
-			if (lineptr)
-				free(lineptr);
-			if (isatty(0))
+			/*if (lineptr)
+				free(lineptr);*/
+			if(isatty(0))
 				_puts("");
 			break;
 		}
@@ -48,13 +36,23 @@ int main(__attribute__((unused))int ac, char **av)
 		k = get_path_program(p_argv[0], program, environ);
 		if (!_strcmp(program, "exit"))
 		{
-			free(lineptr);
+			if (p_argv[1])
+			{
+				if (atoi(p_argv[1]))
+					exit(atoi(p_argv[1]));
+				else
+				{
+					dprintf(2, "%s: 1: %s: illegal number: %s\n",
+							av[0], program, p_argv[1]);
+					exit(4);
+				}
+			}
 			exit(EXIT_SUCCESS);
 		}
 
 		if (!_strcmp(program, "/usr/bin/env"))
 		{
-			for (i = 0; environ[i]; i++)
+			for(i = 0; environ[i]; i++)
 				_puts(environ[i]);
 			k = 2;
 		}
@@ -65,7 +63,7 @@ int main(__attribute__((unused))int ac, char **av)
 
 		if (cpid == -1)
 		{
-			free(lineptr);
+			/*free(lineptr);*/
 			perror("Error");
 			exit(EXIT_FAILURE);
 		}
@@ -73,17 +71,19 @@ int main(__attribute__((unused))int ac, char **av)
 		if (cpid == 0)
 		{
 			execve(program, p_argv, NULL);
-			free(lineptr);
-			perror(av[0]);
-			exit(EXIT_FAILURE);
+			/*free(lineptr);*/
+			/*perror(av[0]);*/
+			dprintf(2, "%s: 1: %s: not found\n", av[0], program);
+			exit(127);
 		}
 		else
 		{
 			if (!k)
 			{
-				perror(av[0]);
+				dprintf(2, "%s: 1: %s: not found\n", av[0], program);
+				/*perror(av[0]);*/
 			}
-			free(lineptr);
+			/*free(lineptr);*/
 			wait(&status);
 		}
 		i++;
