@@ -27,7 +27,7 @@ int main(__attribute__((unused))int ac, char **av)
 		{
 			/*if (lineptr)
 				free(lineptr);*/
-			if(isatty(0))
+			if (isatty(0))
 				_puts("");
 			break;
 		}
@@ -52,7 +52,7 @@ int main(__attribute__((unused))int ac, char **av)
 
 		if (!_strcmp(program, "/usr/bin/env"))
 		{
-			for(i = 0; environ[i]; i++)
+			for (i = 0; environ[i]; i++)
 				_puts(environ[i]);
 			k = 2;
 		}
