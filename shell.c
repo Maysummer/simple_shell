@@ -25,8 +25,6 @@ int main(__attribute__((unused))int ac, char **av)
 		j = _getline(lineptr, &n, stdin);
 		if (j == EOF)
 		{
-			/*if (lineptr)
-				free(lineptr);*/
 			if (isatty(0))
 				_puts("");
 			break;
