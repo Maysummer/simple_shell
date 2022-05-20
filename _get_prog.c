@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * which - checks if a file exist in the PATH
+ * get_program - checks if a file exist in the PATH
  * @short_prog: program passed to terminal
  * @full_prog: full path to program
  * @en: environment variables string
