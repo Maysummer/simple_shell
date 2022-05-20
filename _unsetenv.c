@@ -16,7 +16,7 @@ int _unsetenv(const char *name)
 	if (!check)
 		return (0);
 
-	while(environ[i])
+	while (environ[i])
 	{
 		getvar(environ[i], save);
 		if (!_strcmp(save, (char *)name))
