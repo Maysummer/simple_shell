@@ -38,6 +38,6 @@ int get_path_program(char *short_prog, char *full_prog, char **en);
 char *_getenv(char *s);
 int _setenv(const char *name, const char *value, int overwrite);
 int _unsetenv(const char *name);
-int getvar(char *s, char* save);
+int getvar(char *s, char *save);
 
 #endif
