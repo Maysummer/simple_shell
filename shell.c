@@ -61,7 +61,6 @@ int main(__attribute__((unused))int ac, char **av)
 
 		if (cpid == -1)
 		{
-			/*free(lineptr);*/
 			perror("Error");
 			exit(EXIT_FAILURE);
 		}
